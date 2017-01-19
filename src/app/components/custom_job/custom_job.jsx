@@ -74,7 +74,7 @@ class Custom_job extends React.Component {
             {/* Summary Field */}
             <div className="form-element">
                 <label htmlFor='summary' className="form-label">Summary</label>
-                <input
+                <textarea
                     value={ this.state.summary } 
                     onChange={ this.handleChange } 
                     label='Job Summary'

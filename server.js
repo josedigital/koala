@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser')
 
 const app = express();
 const controllers = require('./controllers/index');
@@ -8,6 +9,13 @@ const controllers = require('./controllers/index');
 app.use(express.static('./'));
 app.use(express.static('dist'));
 
+//------------------------
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+//-----------------------
 
 app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/dist/index.html`);
@@ -25,7 +33,7 @@ db.on("error", function(err){
 });
 
 db.once("open", function(){
-    console.log("Mongoose connection Successful, check port 3000");
+    console.log("Mongoose connection Successful, check port 8080");
 });
 
 //---------------------

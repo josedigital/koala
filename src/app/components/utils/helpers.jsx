@@ -5,8 +5,8 @@ const helpers = {
     //------ Jobs -----
     saveJob: function(/*this will need the id*/) {},
 
-    createCustomJob: (newTitle, newUrl, newSummary, newLocation) => { 
-        return axios.post('newjob', { 
+    createCustomJob: (newTitle, newUrl, newSummary, newLocation)=>{ 
+        return axios.post('/newjob', { 
             title: newTitle,
             url: newUrl,
             summary: newSummary,
