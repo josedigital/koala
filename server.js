@@ -14,6 +14,21 @@ app.get('/', (req, res) => {
 });
 app.use('/', controllers);
 
+//---------------------
+
+mongoose.connect('mongodb://localhost/koala');
+
+var db = mongoose.connection;
+
+db.on("error", function(err){
+    console.log("Mongoose connection error", err);
+});
+
+db.once("open", function(){
+    console.log("Mongoose connection Successful, check port 3000");
+});
+
+//---------------------
 
 
 const port = process.env.PORT || 3000;
