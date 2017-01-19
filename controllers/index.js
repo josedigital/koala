@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 
-const Users = require('../model/model')
+const User = require('../model/model')
 
 //- create the api
 router.get('/api/testing', function(req, res, next) {
@@ -10,7 +10,8 @@ router.get('/api/testing', function(req, res, next) {
 });
 
 //-------- post job --------------------
-router.post('newjobGeorge', ( req, res ) => {
+router.post('/newjob', function( req, res ) {
+  console.log("inside post methof of newjob")
 	
 	var cleanTitle = req.body.title.replace(/ /g, '');
 
@@ -22,7 +23,7 @@ router.post('newjobGeorge', ( req, res ) => {
 
   var cleanLocation = req.body.location.replace(/ /g, '');
 
-    Users.create({
+    User.create({
       title: cleanTitle,
       url: cleanUrl,
       summary: rawSummary,

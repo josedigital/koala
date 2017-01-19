@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Users= new mongoose.Schema({
+const User= new mongoose.Schema({
 
  username: String,
  email: String,
@@ -27,4 +27,4 @@ const Users= new mongoose.Schema({
 });
 
 //is users messing this up?
-module.exports = mongoose.model('Users', Users);
+module.exports = mongoose.model('User', User);
