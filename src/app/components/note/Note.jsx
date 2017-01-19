@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-class ListItem extends Component {
+class Note extends Component {
   render () {
     return (
       <div>
@@ -10,4 +10,4 @@ class ListItem extends Component {
   }
 }
 
-export default ListItem
+export default Note
