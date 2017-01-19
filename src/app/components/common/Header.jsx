@@ -15,6 +15,9 @@ function Header() {
           <li>
             <Link to="/list">List</Link>
           </li>
+          <li>
+            <Link to="/custom">custom job</Link>
+          </li>
         </ul>
       </nav>
     </header>
