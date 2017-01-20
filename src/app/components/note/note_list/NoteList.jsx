@@ -1,16 +1,16 @@
 import React, {Component} from 'react'
-import ListItem from '../listItem/ListItem'
+import note from '../note/Note'
 
-class List extends Component {
+class NoteList extends Component {
   render () {
     return (
       <div className="container list">
         <h1>List</h1>
-        <ListItem />
+        <Note />
       </div>
       
     )
   }
 }
 
-export default List
+export default NoteList
