@@ -1,6 +1,7 @@
 const axios = require('axios')
 
-const helpers = {
+
+export const helpers = {
 
     //------ Jobs -----
     saveJob: function(/*this will need the id*/) {},
@@ -29,8 +30,15 @@ const helpers = {
 
     getNotes: () => {
         return axios.get('/xx/xx')
-    }
+    },
+
+
+
+
 
 }
 
-module.exports = helpers
+
+export function testApi () {
+  return axios.get('http://localhost:8080/api/testing')
+}
