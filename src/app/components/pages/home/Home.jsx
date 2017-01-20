@@ -1,9 +1,9 @@
 import React from 'react';
 
-import TextInput from '../forms/TextInput'
-import TextArea from '../forms/TextArea'
-import Select from '../forms/Select'
-import CheckboxOrRadio from '../forms/CheckboxOrRadio'
+import TextInput from '../../forms/TextInput'
+import TextArea from '../../forms/TextArea'
+import Select from '../../forms/Select'
+import CheckboxOrRadio from '../../forms/CheckboxOrRadio'
 
 class Home extends React.Component {
   constructor (props) {

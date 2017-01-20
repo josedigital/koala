@@ -5,9 +5,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import App from './components/App';
-import Home from './components/home/Home';
-import About from './components/about/About';
-import List from './components/list/List';
+import Home from './components/pages/home/Home';
+import About from './components/pages/about/About';
 import Custom_job from './components/custom_job/custom_job';
 
 import reducers from './reducers';
@@ -23,7 +22,6 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRoute component={Home} />;
         <Route path="/about" component={About} />
-        <Route path="/list" component={List} />
         <Route path="/custom" component={Custom_job} />
       </Route>
     </Router>
