@@ -4,13 +4,19 @@ var router = express.Router();
 
 const User = require('../model/model')
 
-//- create the api
-router.get('/api/testing', function(req, res, next) {
-  res.json({test: 'testings'});
-});
+// ----------------- USERS --------------------------------
 
-//-------- post job --------------------
-router.post('/newjob', function( req, res ) {
+// save user
+router.post('/saveUser', function( req, res ) {}),
+
+//delete user
+router.post('/deleteUser', function( req, res ) {}),
+
+
+// ----------------- JOBS --------------------------------
+
+// save job 
+router.post('/savejob', function( req, res ) {
 
 	
 	var cleanTitle = req.body.title.replace(/ /g, '');
@@ -23,8 +29,6 @@ router.post('/newjob', function( req, res ) {
 
   var cleanLocation = req.body.location.replace(/ /g, '');
 
-//we might be able to grab the user from the params instead of passing it down through props, if we have it in the url and it's unique
-// User.findOneAndUpdate({'username': req.params.id},{$push: .......same as below
 
     User.findOneAndUpdate({'username': "andy"},{$push:
       {'Jobs':{
@@ -37,12 +41,44 @@ router.post('/newjob', function( req, res ) {
 				if (err) {
 					console.log(err);
 				} else {
-					// res.send(doc); ***THIS WE WILL NEED TO SEND BACK AND UPDATE THE PAGE NEW:TRUE SHOULD SEND BACK THE UPDATED ENTRY
-          res.send("NEW JOB POST MADE TO USER ANDY")
+					res.send(doc); //THIS WE WILL NEED TO SEND BACK AND UPDATE THE PAGE NEW:TRUE SHOULD SEND BACK THE UPDATED ENTRY
+          
 				}
 			});
 
  
-    })
+    }),
+
+//get Jobs
+router.post('/getJobs', function( req, res ) {}),
+
+// edit Job
+router.post('/editJob', function( req, res ) {}),
+
+//delete Job
+router.post('/deleteJob', function( req, res ) {}),
+
+
+// ----------------- NOTES --------------------------------
+
+// save Note
+router.post('/saveNote', function( req, res ) {}),
+
+//get Notes
+router.post('/getNotes', function( req, res ) {}),
+
+// edit Note
+router.post('/editNote', function( req, res ) {}),
+
+//delete Note
+router.post('/deleteNote', function( req, res ) {}),
+
+// ----------------- TESTING --------------------------------
+
+//- create the api
+router.get('/api/testing', function(req, res, next) {
+  res.json({test: 'testings'});
+});
+
 
 module.exports = router;

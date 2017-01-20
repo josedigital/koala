@@ -1,6 +1,6 @@
 import React from 'react';
 
-import helpers from '../utils/helpers.jsx'
+import {jobHelpers} from '../utils/helpers'
 
 
 class Custom_job extends React.Component {
@@ -27,8 +27,8 @@ class Custom_job extends React.Component {
 
   handleSubmit(e){
 		e.preventDefault()
-		helpers.createCustomJob(this.state.title, this.state.url, this.state.summary, this.state.location).then(function(){
-			console.log("New Custom Job SAVED to DB")
+		jobHelpers.saveJob(this.state.title, this.state.url, this.state.summary, this.state.location).then(function(){
+            console.log("4 state values sent to DB through saveJob helper")
 		}.bind(this));
 		this.setState({
 			title: '',
