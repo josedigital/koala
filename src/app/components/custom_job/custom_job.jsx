@@ -10,10 +10,12 @@ class Custom_job extends React.Component {
       title: '',
       url: '',
       summary: '',
-      location: ''
+      location: '',
+      job_id: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   handleChange(e){
@@ -34,7 +36,18 @@ class Custom_job extends React.Component {
 			title: '',
 			url: '',
             summary: '',
-            location: ''
+            location: ''            
+		})
+	}
+    //-- TO TEST DELETE FUNCTION --
+    handleDelete(e){
+		e.preventDefault()
+		jobHelpers.deleteJob(this.state.job_id).then(function(data){
+            console.log("job_id sent to db for DELETION")
+            console.log(data)
+		}.bind(this));
+		this.setState({
+			job_id: ''       
 		})
 	}
 
@@ -99,7 +112,30 @@ class Custom_job extends React.Component {
             <button type="submit">
                 Save Job
             </button>
- 
+
+            
+        </form>
+        
+        {/*can delete below this, only for testing*/}
+
+        <h2>Test - Delete Job Function</h2>
+
+        <form onSubmit={ this.handleDelete }>
+            {/* Location field */}
+            <div className="form-element">
+                <label htmlFor='job_id' className="form-label">Just the number from Object ID</label>
+                <input
+                    value={ this.state.job_id } 
+                    onChange={ this.handleChange } 
+                    label='job_id'
+                    type='text'
+                    name='job_id'
+                    placeholder='58822a7016bedeae03c955e8' />
+            </div>
+            <button type="submit">
+                Delete Job
+            </button>
+
         </form>
       </div>
     )  

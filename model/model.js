@@ -5,7 +5,6 @@ const User= new mongoose.Schema({
 
  username: {
     type:String,
-    // unique: true, if we can login from different socail accounts this can't be unique
     required:true
   },
  email: {
