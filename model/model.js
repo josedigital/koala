@@ -12,6 +12,8 @@ const User= new mongoose.Schema({
     unique: true,
     required:true
   },
+  id: String,
+  token: String,
  
  Jobs:[{
         job_id: { type: mongoose.Schema.Types.ObjectId },
