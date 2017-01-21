@@ -34,12 +34,19 @@ export const jobHelpers = {
         return axios.get('http://localhost:8080/getJobs',)
     },
     
-    editJob: () => {
-        return axios.put('http://localhost:8080/editJob',)
+    //this will require a job _id
+    editJob: (job_id) => {
+        return axios.put('http://localhost:8080/editJob',{
+            job_id: job_id
+        })
     },
 
-    deleteJob: () => {
-        return axios.delete('http://localhost:8080/deleteJob',)
+    //this will require a job _id
+    deleteJob: (job_id) => {
+        console.log('helper', job_id)
+        return axios.put('http://localhost:8080/deleteJob',{
+            job_id: job_id
+        })
     },
 }
 
