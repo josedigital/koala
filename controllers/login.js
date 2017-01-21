@@ -3,9 +3,6 @@ var router = express.Router();
 var passport = require('passport');
 var model = require('../model/model');
 
-
-
-
 //------------------- LOGIN
 router.get('/login', function (req, res, next) {
   res.send('<a href="http://localhost:8080/auth/google">Login with Google</a>')
@@ -28,3 +25,4 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/login');
 }
 
+module.exports = router;

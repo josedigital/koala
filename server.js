@@ -8,6 +8,7 @@ var session = require('express-session');
 const app = express();
 app.use(cors());
 const controllers = require('./controllers/index');
+fs = require('fs');
 
 
 app.use(express.static('./'));
@@ -36,7 +37,12 @@ app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/dist/index.html`);
 });
 app.use('/', controllers);
-
+fs.readdirSync('./controllers').forEach(function (file) {
+  if(file.substr(-3) == '.js') {
+    route = require('./controllers/' + file);
+    app.use(route, controllers);
+  }
+});
 
 
 //--------------------- MONGOOSE

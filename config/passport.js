@@ -1,5 +1,6 @@
 var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 var User = require('../model/model');
+var googleAuth = require('../api-keys')
 
 module.exports = function(passport) {
 
@@ -13,8 +14,8 @@ module.exports = function(passport) {
 
   //- passport auth
   passport.use(new GoogleStrategy({
-      clientID:     goog.GOOGLE_CLIENT_ID,
-      clientSecret: goog.GOOGLE_CLIENT_SECRET,
+      clientID:     googleAuth.GOOGLE_CLIENT_ID,
+      clientSecret: googleAuth.GOOGLE_CLIENT_SECRET,
       callbackURL: "http://localhost:8080/auth/google/callback",
       passReqToCallback: true
     },
@@ -32,7 +33,7 @@ module.exports = function(passport) {
             newUser.token = accessToken;
             newUser.username = profile.displayName;
             newUser.email = profile.emails[0].value;
-            
+
             newUser.save(function (err) {
 	    				if (err)
 	    					throw err;
