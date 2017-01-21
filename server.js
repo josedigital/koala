@@ -10,11 +10,11 @@ app.use(cors());
 const controllers = require('./controllers/index');
 fs = require('fs');
 
+require('./config/passport')(passport);
+
 
 app.use(express.static('./'));
 app.use(express.static('dist'));
-
-
 
 //------------------------
 app.use(bodyParser.json());
@@ -23,16 +23,21 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 
-
 //-----------------------
 app.use(session({secret: 'anystringoftext',
 				 saveUninitialized: true,
 				 resave: true}));
 
+//--------------------- PASSPORT
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
 
 
 
-//--------------------- INDEX FILE
+
+
+
+//--------------------- INDEX FILE & CONTROLLERS
 app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/dist/index.html`);
 });
@@ -57,11 +62,6 @@ db.once("open", function(){
 });
 
 
-//--------------------- PASSPORT
-require('./config/passport')(passport);
-
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
 
 
 
