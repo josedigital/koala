@@ -12,11 +12,12 @@ function Header() {
           <li>
             <Link to="/about">About</Link>
           </li>
-          <li>
-            <Link to="/list">List</Link>
-          </li>
+          
           <li>
             <Link to="/custom">custom job</Link>
+          </li>
+          <li>
+            <Link to="/note">Note Test</Link>
           </li>
         </ul>
       </nav>

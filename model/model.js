@@ -16,7 +16,10 @@ const User= new mongoose.Schema({
   token: String,
  
  Jobs:[{
-        job_id: { type: mongoose.Schema.Types.ObjectId },
+        _id: {
+            type: mongoose.Schema.ObjectId,
+            default: mongoose.Types.ObjectId
+        },
         title: {
             type:String,
             // unique: true, NO because jobs COULD be named the same
@@ -29,13 +32,19 @@ const User= new mongoose.Schema({
         status: String,
         Notes:[
             {
-            category: {
-                type: String,
-                required: true // must have a category
-            },
-            note_id: { type: mongoose.Schema.Types.ObjectId },
-            noteText: String
-            }
+                category: {
+                    type: String,
+                    required: true // must have a category
+                },
+                _id: {
+                    type: mongoose.Schema.ObjectId,
+                    default: mongoose.Types.ObjectId
+                },
+                noteText: {
+                    type: String,
+                    required: true
+                }
+           }
         ]        
     }]
 
