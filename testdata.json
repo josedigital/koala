@@ -148,5 +148,49 @@ db.User.insert(
             ]            
         },                 
     ]
+},
+{
+ "username" : "George",
+    "email" : "george@yahoo.com",
+    "Jobs" : [ 
+        {
+            "_id" : new ObjectId(),
+            "title" : "Job Test Title",
+            "url" : "testurl.com",
+            "summary" : "A test blub about the job",
+            "location": "AustinTest",
+            "status": "",
+            "isHot": true,
+            "Notes":[
+                {   
+                    "_id": new ObjectId(),
+                    "category": "category one for test",
+                    "noteText": "note one"
+                },
+                {
+                    "_id": new ObjectId(),
+                    "category": "category two for test",
+                    "noteText": "note two"
+                },
+                {
+                    "_id": new ObjectId(),
+                    "category": "category three for test",
+                    "noteText": "note three"
+                },
+                {
+                    "_id": new ObjectId(),
+                    "category": "category four for test",
+                    "noteText": "note four"
+                },
+                {
+                    "_id": new ObjectId(),
+                    "category": "category five for test",
+                    "noteText": "note five"
+                }
+            ]            
+        }
+    ]
 }
+
+
 )
