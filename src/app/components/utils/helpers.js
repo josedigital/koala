@@ -76,6 +76,6 @@ export const noteHelpers = {
 
 // ----------------- TESTING --------------------------------
 
-export function testApi () {
-  return axios.get('http://localhost:8080/api/testing')
+export function jobsApi () {
+  return axios.get('http://localhost:8080/api/jobs/all')
 }

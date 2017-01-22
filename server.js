@@ -24,9 +24,11 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 
 //-----------------------
-app.use(session({secret: 'anystringoftext',
-				 saveUninitialized: true,
-				 resave: true}));
+app.use(session({
+    secret: 'anystringoftext',
+    saveUninitialized: true,
+    resave: true
+}));
 
 //--------------------- PASSPORT
 app.use(passport.initialize());
@@ -39,14 +41,15 @@ app.use(passport.session()); // persistent login sessions
 
 //--------------------- INDEX FILE & CONTROLLERS
 app.get('/', (req, res) => {
-  res.sendFile(`${__dirname}/dist/index.html`);
+    res.sendFile(`${__dirname}/dist/index.html`);
 });
+
 app.use('/', controllers);
-fs.readdirSync('./controllers').forEach(function (file) {
-  if(file.substr(-3) == '.js') {
-    route = require('./controllers/' + file);
-    app.use(route, controllers);
-  }
+fs.readdirSync('./controllers').forEach(function(file) {
+    if (file.substr(-3) == '.js') {
+        route = require('./controllers/' + file);
+        app.use(route, controllers);
+    }
 });
 
 
@@ -54,10 +57,10 @@ fs.readdirSync('./controllers').forEach(function (file) {
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url);
 var db = mongoose.connection;
-db.on("error", function(err){
+db.on("error", function(err) {
     console.log("Mongoose connection error", err);
 });
-db.once("open", function(){
+db.once("open", function() {
     console.log("Mongoose connection Successful, check port 8080");
 });
 
@@ -71,5 +74,5 @@ db.once("open", function(){
 const port = process.env.PORT || 8080;
 
 app.listen(port, () => {
-  console.log('app listening on', port);
+    console.log('app listening on', port);
 });
