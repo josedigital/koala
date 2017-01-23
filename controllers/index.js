@@ -18,8 +18,9 @@ router.delete('/deleteUser', function( req, res ) {}),
 // --- save job 
 router.post('/savejob', function( req, res ) {
 
-	
-	var cleanTitle = req.body.title.replace(/ /g, '');
+  var cleanTitle = req.body.title
+	// Taking the spaces out isn't a good idea
+	// var cleanTitle = req.body.title.replace(/ /g, '');
 
 	var cleanUrl = req.body.url.toLowerCase();
 	cleanUrl = cleanUrl.replace(/ /g, '');
@@ -43,6 +44,7 @@ router.post('/savejob', function( req, res ) {
 				} else {
 					res.send(doc); //THIS WE WILL NEED TO SEND BACK AND UPDATE THE PAGE NEW:TRUE SHOULD SEND BACK THE UPDATED ENTRY
           
+          
 				}
 			});
 
@@ -57,7 +59,8 @@ router.get('/getJobs', function( req, res ) {
       if (err) {
         console.log(err);
       } else {
-        res.json(doc); //resulting json sent back to front
+        //res.json(doc); //resulting json sent back to front
+        res.json(doc)
       }
   });
 });
@@ -109,19 +112,20 @@ router.post('/saveNote', function( req, res ) {
 //Trying to get all notes for one job, but i think we always will get back the entire object, not just the notes.
 router.get('/getNotes', function( req, res ) {
 var job_id = req.body.job_id
-	// User.findOne(
-  //   { 'username': 'andy', 'Jobs._id': job_id },
-  User.find( 
-      {'username': "andy",  'Jobs':  
-          { $elemMatch: {'url': "testurl.com" }}
-   },
+	User.find(
+  { 'username': 'andy', 'Jobs.$._id': job_id }).exec(
+    // { 'username': 'andy', 'Jobs._id': job_id },
+  // User.findOne( 
+  //     {'username': "andy",  'Jobs':  
+  //         { $elemMatch: {'_id': job_id}}
+  //  },
     function(err, doc){
       if (err) {
         console.log(err);
       } else {
         res.json(doc);
       }
-  });
+  })
 });
 
 // --- edit Note

@@ -14,7 +14,10 @@ class NoteList extends Component {
       jobId:'',
       jobNote: '',
       noteId:'',
-      noteCategory: ''
+      noteCategory: '',
+      jobIdforNote: '5883bcf07270048fdcd1dd00',
+      jobsArray: [],
+      selectedJob: []
     }
 
      this.handleJobId = this.handleJobId.bind(this)
@@ -58,6 +61,7 @@ class NoteList extends Component {
       jobId: '',
       jobNote: '',
       noteCategory: ''
+      
     })
   }
 
@@ -72,15 +76,38 @@ class NoteList extends Component {
     })
   }
 
+  componentDidMount() {
+    noteHelpers.getNotes(this.state.jobIdforNote).then(function(response) {
+      console.log(response.data[0].Jobs[0]._id)
+    if (response.data[0].Jobs !== this.state.jobsArray) {
+        this.setState({
+          jobsArray:response.data[0].Jobs
+        })
+        console.log(this.state.jobsArray)
+        for(var i =0; i<this.state.jobsArray.length; i++){
+           if ( this.state.jobsArray[i]._id === this.state.jobIdforNote){
+            this.setState({
+              selectedJob: this.state.jobsArray[i].Notes
+            })
+          }
+        }
+      }
+      console.log(this.state.selectedJob)
+    }.bind(this));
+  }
+
   render () {
     return (
       
         <div className="container list">
 
-            <h1>List</h1>
-            <Note />
+            <h3>Notes for Andy's first Job, 5883bcf07270048fdcd1dd00</h3>
+            <ol>
+              {this.state.selectedJob.map ((note, idx) => <Note key={idx} note={note} />)}
+            </ol>
+            
 
-            <hr />
+            
 
             <h1>Create Note</h1>
 
@@ -122,12 +149,6 @@ class NoteList extends Component {
                 content={this.state.jobId}
                 placeholder='55689900083355' />
 
-             <p>Select the Notes Category:</p>
-              <Select 
-                name='category'
-                controlFunction={this.handleCategory}
-                selectedValue={this.state.noteCategory}
-                options={['Position Research','Company Information', 'Project Highlights', 'Interview Questions']} />
 
               <TextInput 
                 label='Enter the note_id you want to delete'
