@@ -10,6 +10,7 @@ class JobLister extends Component {
         <p>{this.props.job.isHot}</p>
         <p>{this.props.job.status}</p>
         <p>{this.props.job._id}</p>
+      
         <hr />
     </li>
     )

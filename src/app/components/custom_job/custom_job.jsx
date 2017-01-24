@@ -19,7 +19,7 @@ class Custom_job extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this)
-    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this)
+    
   }
 
   handleChange(e){
@@ -66,15 +66,7 @@ class Custom_job extends React.Component {
     }.bind(this));
   }
 
-    componentWillReceiveProps(nextProps) {
-		jobHelpers.getJobs().then(function(response) {
-      if (response.data.Jobs !== this.state.jobList) {
-        this.setState({
-          jobList:response.data.Jobs
-        })
-      }
-    }.bind(this));
-  }
+
 
   
 
