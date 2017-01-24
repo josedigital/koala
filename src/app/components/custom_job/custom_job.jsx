@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {jobHelpers} from '../utils/helpers'
+import JobLister from './job_lister/jobLister'
 
 
 class Custom_job extends React.Component {
@@ -11,11 +12,14 @@ class Custom_job extends React.Component {
       url: '',
       summary: '',
       location: '',
-      job_id: ''
+    //   job_id: ''
+      jobList: [ ]
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this)
   }
 
   handleChange(e){
@@ -47,15 +51,43 @@ class Custom_job extends React.Component {
             console.log(data)
 		}.bind(this));
 		this.setState({
-			job_id: ''       
+			job_id: []       
 		})
 	}
 
+    componentDidMount() {
+    jobHelpers.getJobs().then(function(response) {
+      if (response.data.Jobs !== this.state.jobList) {
+        this.setState({
+          jobList:response.data.Jobs
+        })
+        console.log(this.state.jobList)
+      }
+    }.bind(this));
+  }
+
+    componentWillReceiveProps(nextProps) {
+		jobHelpers.getJobs().then(function(response) {
+      if (response.data.Jobs !== this.state.jobList) {
+        this.setState({
+          jobList:response.data.Jobs
+        })
+      }
+    }.bind(this));
+  }
+
+  
 
   render () {
     return (
       <div className="container home">
-        <h1>Create a Custom Job</h1>
+        <h2>All of Andy's Jobs</h2>
+        <ol>
+         {this.state.jobList.map ((job, idx) =>  <JobLister key={idx} job={job} /> )}
+        </ol>
+
+        
+        <h2>Add a custom Job to Andy's list</h2>
 
         <form onSubmit={ this.handleSubmit }>
         
@@ -117,13 +149,13 @@ class Custom_job extends React.Component {
         </form>
         
         {/*can delete below this, only for testing*/}
-
-        <h2>Test - Delete Job Function</h2>
+        <hr />
+        <h2>Delete a Job from Andy's list</h2>
 
         <form onSubmit={ this.handleDelete }>
             {/* Location field */}
             <div className="form-element">
-                <label htmlFor='job_id' className="form-label">Just the number from Object ID</label>
+                <label htmlFor='job_id' className="form-label">Job _id number</label>
                 <input
                     value={ this.state.job_id } 
                     onChange={ this.handleChange } 
